@@ -1,0 +1,38 @@
+stages:
+    - build
+    - deploy
+
+variables:
+    GIT_STRATEGY: fetch
+    GIT_SUBMODULE_STRATEGY: recursive
+
+build:
+    image: wonderlandengine/editor:edge
+    stage: build
+    script:
+        - npm i
+        - WonderlandEditor --windowless --package --project DiscordActivityExample.wlp --output deploy
+        - find ./deploy/ -type f ! -name '*.gz' -exec gzip -k "{}" \;
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}
+        paths:
+            - cache/
+    artifacts:
+        paths:
+            - 'deploy'
+
+pages:
+    image: alpine:latest
+    stage: deploy
+    variables:
+        # Only uploading artifacts
+        GIT_STRATEGY: none
+    only:
+        - main
+    script:
+        - mv deploy public
+    artifacts:
+        paths:
+            - public
+    dependencies:
+        - 'build'

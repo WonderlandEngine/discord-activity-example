@@ -1,0 +1,27 @@
+{
+  "name": "wonderland-engine-discord-activity",
+  "version": "1.0.0",
+  "description": "Wonderland Engine Discord Activity Example",
+  "main": "js/index.js",
+  "type": "module",
+  "module": "js/index.js",
+  "scripts": {
+  },
+  "keywords": [
+    "wonderland-engine"
+  ],
+  "overrides": {
+    "@wonderlandengine/api": "$@wonderlandengine/api"
+  },
+  "prettier": "@wonderlandengine/prettier-config",
+  "dependencies": {
+    "@discord/embedded-app-sdk": "^1.2.0",
+    "@tma.js/sdk": "^1.5.3",
+    "@wonderlandengine/api": "^1.2.1",
+    "@wonderlandengine/components": "^1.1.4",
+    "gl-matrix": "^3.4.3"
+  },
+  "devDependencies": {
+    "@wonderlandengine/prettier-config": "^1.0.0"
+  }
+}
