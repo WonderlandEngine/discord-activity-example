@@ -1,0 +1,17 @@
+name: Build
+on: [push]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    container:
+      image: wonderlandengine/editor:latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Package
+      run: |
+        # Build example project
+        /usr/local/bin/entrypoint.sh WonderlandEditor --windowless --package --project DiscordActivityExample.wlp --output ./public/
+      env:
+          WLE_CREDENTIALS: ${{ secrets.WLE_CREDENTIALS }}
