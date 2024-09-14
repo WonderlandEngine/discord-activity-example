@@ -1,6 +1,6 @@
 # Wonderland Engine - Discord Activity Example
 
-[![Build & Test](https://github.com/WonderlandEngine/discord-activity-example/actions/workflows/npm-build.yml/badge.svg)](https://github.com/WonderlandEngine/discord-activity-example/actions/workflows/npm-build.yml)
+[![Build & Test](https://github.com/WonderlandEngine/discord-activity-example/actions/workflows/github-pages.yml/badge.svg)](https://github.com/WonderlandEngine/discord-activity-example/actions/workflows/github-pages.yml)
 [![Discord][discord]](https://discord.wonderlandengine.com)
 
 Example of a Discord Activity built with the [fastest 3D engine for the web](https://wonderlandengine.com).
