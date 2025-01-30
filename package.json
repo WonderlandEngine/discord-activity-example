@@ -6,6 +6,16 @@
   "type": "module",
   "module": "js/index.js",
   "scripts": {
+    "create-activity-page": "wl-cloud page create discordacitivityexample",
+    "update-activity-page": "wl-cloud page update <FullPageName>",
+    "delete-activity-page": "wl-cloud page delete <FullPageName> -f",
+    "create-api": "wl-cloud api create <ApiName> 3000 <ImageTag> DISCORD_CLIENT_ID=YOUR_DISCORD_CLIENT_ID,DISCORD_CLIENT_SECRET=CHANGE_TO_YOUR_SECRET",
+    "delete-api": "wl-cloud api delete <ApiName>",
+    "create-api-path": "wl-cloud page add-api <FullPageName> <ApiName> api",
+    "delete-api-path": "wl-cloud page delete-api <FullPageName> <ApiName>",
+    "build-server": "cd server && docker build --platform linux/amd64 -t <ImageTag> .",
+    "push": "docker push <ImageTag>",
+    "deploy": "wl-cloud page update"
   },
   "keywords": [
     "wonderland-engine"
