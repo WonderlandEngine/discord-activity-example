@@ -19,3 +19,8 @@
 package-lock.json
 
 .env
+wle-apitoken.json
+deployment.json
+*.iml
+.idea/**/*
+.idea
