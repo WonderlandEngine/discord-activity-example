@@ -18,6 +18,7 @@ export class DiscordActivityProvider implements UserProvider {
 
     onReady: Promise<void>;
     isReady = false;
+    ownedItems: string[];
     res!: () => void;
     rej!: (e: any) => void;
 
@@ -28,6 +29,7 @@ export class DiscordActivityProvider implements UserProvider {
             self.res = res;
             self.rej = rej;
         });
+        this.ownedItems = [];
         this.init();
     }
 
@@ -87,5 +89,42 @@ export class DiscordActivityProvider implements UserProvider {
 
     get isLoggedIn() {
         return this.isReady;
+    }
+
+    /**
+     * Load bought items from Discord
+     */
+    async loadItems(): Promise<void> {
+        const entitlements = await this.discord?.commands.getEntitlements();
+        if (entitlements) {
+            this.ownedItems = entitlements?.entitlements.map((entitlement) => entitlement.sku_id).filter(item => item);
+        } else {
+            console.log('No entitlements found!');
+        }
+    }
+
+    /**
+     * Purchase an item from Discord by sku_id
+     */
+    async purchaseItem(sku_id: string): Promise<boolean> {
+        try {
+            const response = await this.discord?.commands.startPurchase({sku_id});
+            if (response) {
+                const itemExists = response.find((item) => item.sku_id === sku_id);
+                if (itemExists) {
+                    if (!this.ownedItems.includes(sku_id)) {
+                        this.ownedItems.push(sku_id);
+                        return true;
+                    } else {
+                        console.log(`Item ${sku_id} already exists on ownedItems`);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        } catch (err) {
+            console.error(`failed to purchase item ${sku_id}`,err);
+        }
+        return false;
     }
 }
