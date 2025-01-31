@@ -1,5 +1,5 @@
-const DISCORD_CLIENT_ID = 'CHANGE_ME';
-const isOnDiscord = TARGET === 'discord' || window.location.hostname.includes(discordAppId)
+const DISCORD_CLIENT_ID = '1334070081457754154';
+const isOnDiscord = window.location.hostname.includes(DISCORD_CLIENT_ID)
 
 /**
  * Discord hides all resources behind a /.proxy/ url. To mitigate this als still be able to load
