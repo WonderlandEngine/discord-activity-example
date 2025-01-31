@@ -43,4 +43,4 @@ through the cloudflare tunnel.
 7. Now you need to connect the Discord Activity to your API deployment, this can be done by using the `npm run create-api-path`
    command just make sure that the values are updated with your actual values for `PageName` and `ApiName`
 
-That's it! Now you can use the `projectDomain` of your deployed `Wle Page` as a target for your [URL mapping](https://discord.com/developers/docs/activities/development-guides#url-mapping)
+That's it! Now you can use the `projectDomain` of your deployed Wonderland Cloud Page as a target for your [URL mapping](https://discord.com/developers/docs/activities/development-guides#url-mapping)
