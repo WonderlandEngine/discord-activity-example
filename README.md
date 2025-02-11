@@ -38,9 +38,9 @@ through the cloudflare tunnel.
    >
    > You should avoid using the :latest tag when deploying containers in production as it is harder to track which version of the image is running and more difficult to roll back properly.
 4. Publish this image via `npm run push`
-5. Create a new `Wonderland Apis deployment` via `npm run create-api` replace `ApiName` and `ImageTag` with your own values
-6. Publish the Wonderland project as a `Wle Page` via `npm run create-activity-page` this will publish your Discord activity to the web
+5. [Create a new Wonderland Apis deployment](https://github.com/WonderlandEngine/wonderland-cloud/blob/main/cli/README.md#deploying-and-working-with-apis) via `npm run create-api` replace `ApiName` and `ImageTag` with your own values
+6.[ Publish the Wonderland project as a Wle Page](https://github.com/WonderlandEngine/wonderland-cloud/blob/main/cli/README.md#publish-mode) via `npm run create-activity-page` this will publish your Discord activity to the web
 7. Now you need to connect the Discord Activity to your API deployment, this can be done by using the `npm run create-api-path`
    command just make sure that the values are updated with your actual values for `PageName` and `ApiName`
 
-That's it! Now you can use the `projectDomain` of your deployed `Wle Page` as a target for your [URL mapping](https://discord.com/developers/docs/activities/development-guides#url-mapping)
+That's it! Now you can use the `projectDomain` of your deployed Wle Page as a target for your [URL mapping](https://discord.com/developers/docs/activities/development-guides#url-mapping)
