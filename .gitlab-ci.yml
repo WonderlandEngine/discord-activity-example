@@ -11,7 +11,7 @@ build:
     stage: build
     script:
         - npm i
-        - WonderlandEditor --windowless --package --project DiscordActivityExample.wlp --output deploy
+        - WonderlandEditor --windowless --package --project DiscordActivityExample.wlp --config discord.json --output deploy
         - find ./deploy/ -type f ! -name '*.gz' -exec gzip -k "{}" \;
     cache:
         key: ${CI_COMMIT_REF_SLUG}

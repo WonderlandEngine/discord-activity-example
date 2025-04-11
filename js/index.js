@@ -1,3 +1,48 @@
+const DISCORD_CLIENT_ID = '1334070081457754154';
+const isOnDiscord = window.location.hostname.includes(DISCORD_CLIENT_ID)
+
+/**
+ * Discord hides all resources behind a /.proxy/ url. To mitigate this als still be able to load
+ * all the required resources correctly we need to add the code below at top level, so it will
+ * be run first before loading anything.
+ *
+ * This code will automatically add a /.proxy/ before the actual resource and thus fix loading
+ * via the Discord proxy system.
+ */
+if (isOnDiscord) {
+    const addProxy = (url) => {
+        if(url.startsWith('data')){
+            return url;
+        }
+        const split = url.split('/');
+
+        const proxyIndex = url.includes('://') ? 3 : split[0] !== '' ? 0 : 1;
+        if (split.length <= proxyIndex) {
+            return url;
+        }
+        if (split[proxyIndex] !== '.proxy' && split[proxyIndex] !== '') {
+            split.splice(proxyIndex, 0, '.proxy');
+            return split.join('/');
+        }
+        return url;
+    };
+
+    const originalFetch = window.fetch;
+    const originalOpen = XMLHttpRequest.prototype.open;
+
+    window.fetch = (param1, param2) => {
+        if (typeof param1 === 'string') {
+            return originalFetch(addProxy(param1), param2);
+        }
+        return originalFetch(param1, param2);
+    };
+
+    XMLHttpRequest.prototype.open = (method, url, async, username, password) => {
+        return originalOpen(method, addProxy(url), async, username, password);
+    }
+}
+
+
 /**
  * /!\ This file is auto-generated.
  *
@@ -25,8 +70,8 @@ import {DiscordActivityProvider} from './discord.js';
 try {
     user.registerProvider(
         new DiscordActivityProvider({
-            DISCORD_CLIENT_ID: '1240944918566932490',
-            DISCORD_APPLICATION_ID: '1240944918566932490',
+            DISCORD_CLIENT_ID: DISCORD_CLIENT_ID,
+            DISCORD_APPLICATION_ID: DISCORD_CLIENT_ID,
         })
     );
 } catch (e) {

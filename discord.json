@@ -1,0 +1,7 @@
+{
+    "settings": {
+        "scripting": {
+            "esbuildFlags": "--format=esm --define:TARGET=\"\\\"discord\\\"\" --minify"
+        }
+    }
+}
